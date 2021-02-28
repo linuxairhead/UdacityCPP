@@ -98,8 +98,6 @@ void RoutePlanner::AStarSearch() {
 
     // TODO: Implement your solution here.
     while(open_list.size()>0){
-      // - Use the AddNeighbors method to add all of the neighbors of the current node to the open_list.
-      AddNeighbors(current_node);
       // - Use the NextNode() method to sort the open_list and return the next node.
       current_node = NextNode();
       // - When the search has reached the end_node, use the ConstructFinalPath method to return the final path that was found.
@@ -108,5 +106,7 @@ void RoutePlanner::AStarSearch() {
         m_Model.path = ConstructFinalPath(current_node);
         return;
       }
+      // - Use the AddNeighbors method to add all of the neighbors of the current node to the open_list.
+      AddNeighbors(current_node);
     }
 }
