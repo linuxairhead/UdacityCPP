@@ -64,7 +64,7 @@ int main(int argc, const char **argv)
     std::cout << "Enter X co-ordinates of end point between 0 and 100 --> ";
     std::cin >> end_x;
     std::cout << "Enter X co-ordinates of end point between 0 and 100--> ";
-    std::cin >> end_x;
+    std::cin >> end_y;
 
     // Build Model.
     RouteModel model{osm_data};
