@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "linux_parser.h"
-
+#include <iostream>
 using std::stof;
 using std::string;
 using std::to_string;
@@ -211,18 +211,17 @@ string LinuxParser::Command(int pid) {
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Ram(int pid) {
   string line, key, memStr;
-  long mem;
+  int mem;
 
   std::ifstream stream(kProcDirectory + std::to_string(pid) + kStatusFilename);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
       std::istringstream linestream(line);
-      linestream >> key;
+      linestream >> key >> memStr;
       if (key == "VmSize:") {
-        linestream >> mem;
-        mem /= 1000;
-        memStr = std::to_string(mem);
-        break;
+        mem = stoi(memStr) / 10;
+        memStr = to_string((float)mem/100);
+        return memStr;
       }
     }
   }
