@@ -284,10 +284,5 @@ long LinuxParser::UpTime(int pid) {
       values.push_back(value);
     }
   }
-  try {
-    starttime = stol(values[21]) / sysconf(_SC_CLK_TCK);
-  } catch (...) {
-    starttime = 0;
-  }
-  return starttime;
+  return UpTime() - stol(values[21]) / sysconf(_SC_CLK_TCK);
 }
