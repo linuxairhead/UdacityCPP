@@ -27,7 +27,7 @@ void MessageQueue<T>::send(T &&msg)
     std::lock_guard<std::mutex> lock(_mutex);
 
     // as well as _condition.notify_one() to add a new message to the queue and afterwards send a notification.
-    _queue.emplace_back(msg);
+    _queue.push_back(std::move(msg));
     _condition.notify_one();
 }
 
@@ -89,6 +89,7 @@ void TrafficLight::cycleThroughPhases()
 
       if(deltaTime.count() > cycleDuration) {
         _currentPhase = (_currentPhase == TrafficLightPhase::green) ? red : green;
+        _queue.send(std::move(_currentPhase));
       }
     }
 }
