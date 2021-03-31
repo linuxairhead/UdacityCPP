@@ -1,12 +1,10 @@
-# CPPND: Capstone Snake Game Example
+# CPPND: Capstone Snake Game
 
-This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
+I extended the Snake Game starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213) to make more complete Game. I included SDL2_TTF to rander the text on the screen to give more animated game experience to game player and when the game player want to exit the game with escape key, pop up window will help to guide the end of game. I also modified the snake size and speed as the game progress to give more exciting experience to game player. 
 
 <img src="snake_game.gif"/>
 
-The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
-
-In this project, you can build your own C++ application or extend this Snake game, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
+I had the chance to integrate what you've learned throughout Udacity cpp program. I overload the Rander function with different parameter. I also protected variable by defining at private Access Modifiers. When I function with parameter, I passed as referenced to get the update data when the function return the result.
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
@@ -18,6 +16,13 @@ In this project, you can build your own C++ application or extend this Snake gam
 * SDL2 >= 2.0
   * All installation instructions can be found [here](https://wiki.libsdl.org/Installation)
   >Note that for Linux, an `apt` or `apt-get` installation is preferred to building from source. 
+    * sudo apt install libsdl2-dev
+    * sudo apt-get install libsdl2-dev
+* SDL2 TTF >= 2.0
+  * All installation instructions can be found here
+  * Note that for Linux, an apt or apt-get installation is preferred to building from source.
+    * sudo apt install libsdl2-ttf-dev
+    * sudo apt-get install libsdl2-ttf-dev
 * gcc/g++ >= 5.4
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
