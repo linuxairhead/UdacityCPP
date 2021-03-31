@@ -14,6 +14,7 @@ class Game {
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
+  int level_;
 
  private:
   Snake snake;
@@ -27,7 +28,8 @@ class Game {
   int score{0};
 
   void PlaceFood();
-  void Update();
+  void Update(int &food_count);
+  void setLevelFoodCount(int &food_count);
 };
 
 #endif

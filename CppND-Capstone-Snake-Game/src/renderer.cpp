@@ -259,7 +259,7 @@ int Renderer::ContinueOrExit() {
     }
 }
 
-void Renderer::UpdateWindowTitle(int score, int fps) {
-  std::string title{"Snake Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
+void Renderer::UpdateWindowTitle(int score, int level) {
+  std::string title{"Snake Score: " + std::to_string(score) + "  Game Level is " + std::to_string(level)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }

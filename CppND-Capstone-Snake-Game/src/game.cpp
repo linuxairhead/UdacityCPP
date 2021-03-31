@@ -17,11 +17,16 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   Uint32 frame_end;
   Uint32 frame_duration;
   int frame_count = 0;
+  int food_count = 0;
   bool running = true;
   bool exitWindows = false;
-  int level = renderer.Render();
 
-  std::cout << "Level was selected " << level << "\n"; // test
+  // Get Game Level from User
+  level_ = renderer.Render();
+  setLevelFoodCount(food_count);
+  SDL_Log("Selected User Level is %d", level_);
+  SDL_Log("Food Count is set as %d", food_count);
+
   while (running) {
     frame_start = SDL_GetTicks();
 
@@ -34,8 +39,15 @@ void Game::Run(Controller const &controller, Renderer &renderer,
         running = false;
     }
 
-    Update();
+    Update(food_count );
     renderer.Render(snake, food);
+
+    if(food_count == 0 ) {
+       level_++;
+       setLevelFoodCount(food_count);
+       SDL_Log("Increased the User Level to %d", level_);
+       SDL_Log("New Food Count is set as %d", food_count);
+    }
 
     frame_end = SDL_GetTicks();
 
@@ -46,7 +58,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
 
     // After every second, update the window title.
     if (frame_end - title_timestamp >= 1000) {
-      renderer.UpdateWindowTitle(score, frame_count);
+      renderer.UpdateWindowTitle(score, level_);
       frame_count = 0;
       title_timestamp = frame_end;
     }
@@ -75,7 +87,7 @@ void Game::PlaceFood() {
   }
 }
 
-void Game::Update() {
+void Game::Update(int &food_count) {
   if (!snake.alive) return;
 
   snake.Update();
@@ -85,12 +97,28 @@ void Game::Update() {
 
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
+    food_count--;
     score++;
     PlaceFood();
     // Grow snake and increase speed.
     snake.GrowBody();
     snake.speed += 0.02;
   }
+}
+
+void Game::setLevelFoodCount(int &food_count){
+  switch(level_) {
+    case 1: food_count = 5;
+      break;
+    case 2: food_count = 10;
+      break;
+    case 3: food_count = 15;
+      break;
+    case 4: food_count = 20;
+      break;
+    case 5: food_count = 25;
+  }
+  return;
 }
 
 int Game::GetScore() const { return score; }
