@@ -45,8 +45,12 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     if(food_count == 0 ) {
        level_++;
        setLevelFoodCount(food_count);
-       SDL_Log("Increased the User Level to %d", level_);
-       SDL_Log("New Food Count is set as %d", food_count);
+       setSize();
+       SDL_Log("<<<  the User Level is %d  >>>", level_);
+       SDL_Log("  Need to get %d Food Count for next level", food_count);
+       SDL_Log("  Current Snake size is %d", snake.size);
+       SDL_Log("  Current Snake speed is %f", snake.speed);
+       SDL_Log("  Current Snake growth rate is %d", snake.growth);
     }
 
     frame_end = SDL_GetTicks();
@@ -121,5 +125,10 @@ void Game::setLevelFoodCount(int &food_count){
   return;
 }
 
+void Game::setSize() {
+  snake.growth = level_;
+}
+
 int Game::GetScore() const { return score; }
+
 int Game::GetSize() const { return snake.size; }
