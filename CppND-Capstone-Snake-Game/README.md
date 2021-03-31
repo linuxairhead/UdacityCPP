@@ -2,7 +2,9 @@
 
 I extended the Snake Game starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213) to make more complete Game. I included SDL2_TTF to rander the text on the screen to give more animated game experience to game player and when the game player want to exit the game with escape key, pop up window will help to guide the end of game. I also modified the snake size and speed as the game progress to give more exciting experience to game player. 
 
-<img src="snake_game.gif"/>
+<img src="Introduction.png"/>
+<img src="Game.png"/>
+<img src="Exit.png"/>
 
 I had the chance to integrate what you've learned throughout Udacity cpp program. I overload the Rander function with different parameter. I also protected variable by defining at private Access Modifiers. When I function with parameter, I passed as referenced to get the update data when the function return the result.
 
