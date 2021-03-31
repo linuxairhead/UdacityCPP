@@ -19,6 +19,9 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   int frame_count = 0;
   bool running = true;
 
+  int level = renderer.Render();
+
+  std::cout << "Level was selected " << level << "\n"; // test
   while (running) {
     frame_start = SDL_GetTicks();
 
