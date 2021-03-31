@@ -18,7 +18,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   Uint32 frame_duration;
   int frame_count = 0;
   bool running = true;
-
+  bool exitWindows = false;
   int level = renderer.Render();
 
   std::cout << "Level was selected " << level << "\n"; // test
@@ -26,7 +26,14 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
-    controller.HandleInput(running, snake);
+    controller.HandleInput(running, snake, exitWindows);
+
+    if (exitWindows) {
+      exitWindows = false;
+      if( renderer.ContinueOrExit() )
+        running = false;
+    }
+
     Update();
     renderer.Render(snake, food);
 

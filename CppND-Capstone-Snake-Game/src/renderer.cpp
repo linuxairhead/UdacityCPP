@@ -178,7 +178,6 @@ int Renderer::Render()
 }
 
 
-
 void Renderer::Render(Snake const snake, SDL_Point const &food) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
@@ -214,6 +213,50 @@ void Renderer::Render(Snake const snake, SDL_Point const &food) {
 
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
+}
+
+int Renderer::ContinueOrExit() {
+
+   const SDL_MessageBoxButtonData buttons[] = {
+        { SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "Continue" },
+        { SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 1, "Exit" },
+    };
+
+    const SDL_MessageBoxColorScheme colorScheme = {
+        { /* .colors (.r, .g, .b) */
+            /* [SDL_MESSAGEBOX_COLOR_BACKGROUND] */
+            {  51,  153,   255 },
+            /* [SDL_MESSAGEBOX_COLOR_TEXT] */
+            {  255, 255, 255 },
+            /* [SDL_MESSAGEBOX_COLOR_BUTTON_BORDER] */
+            {  0,    0,   0 },
+            /* [SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND] */
+            {   0,   0, 255 },
+            /* [SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED] */
+            {  255, 255, 255 }
+        }
+    };
+
+    const SDL_MessageBoxData messageboxdata = {
+        SDL_MESSAGEBOX_INFORMATION, /* .flags */
+        NULL, /* .window */
+        "Snake Game", /* .title */
+        "Would you like to exit the game?", /* .message */
+        SDL_arraysize(buttons), /* .numbuttons */
+        buttons, /* .buttons */
+        &colorScheme /* .colorScheme */
+    };
+    int buttonid;
+    if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0) {
+        SDL_Log("error displaying message box");
+        return 0;
+    }
+    if (buttonid == -1) {
+        SDL_Log("no selection");
+    } else {
+        SDL_Log("selection was %s", buttons[buttonid].text);
+        return buttonid;
+    }
 }
 
 void Renderer::UpdateWindowTitle(int score, int fps) {
