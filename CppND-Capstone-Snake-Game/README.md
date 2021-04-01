@@ -6,7 +6,26 @@ I extended the Snake Game starter repo for the Capstone project in the [Udacity 
 <img src="Game.png"/>
 <img src="Exit.png"/>
 
-I had the chance to integrate what you've learned throughout Udacity cpp program. I overload the Rander function with different parameter. I also protected variable by defining at private Access Modifiers. When I function with parameter, I passed as referenced to get the update data when the function return the result.
+I had the chance to integrate what you've learned throughout Udacity cpp program.
+Loops, Function, I/O
+* A variety of control structures are used in the project. The project code is clearly organized into functions.
+  * I understood given basic code structure and I exteded further by inserting various function
+    * extended function - controller.h : line 16 - int Render(); 
+    * extended function - game.h : line 16 - int GetSize() const; line 33 - void setLevelFoodCount(int &food_count); 
+    * extended function - renderer.h : line 16 int Render();
+* The project accepts input from a user as part of the necessary operation of the program.
+  * User can chose the level - renderer.cpp line : 98 while(SDL_PollEvent(&event)) from mouse event
+  * User can escape with esc key with pop up menu -- controller.cpp line 38 : case SDLK_ESCAPE: from keyboard event
+OOP
+* All class data members are explicitly specified as public, protected, or private.
+  * each class follow public and private variable and method.
+  	* controller.h, game.h, renderer.h, snamek.h - all 
+* One function is overloaded with different signatures for the same function name.
+  * renderer.h : line 16 int Render();
+  * renderer.h : line 17 void Render(Snake const snake, SDL_Point const &food);
+* At least two variables are defined as references, or two functions use pass-by-reference in the project code.
+  * void Render(Snake const snake, SDL_Point const &food);
+  * void Run(Controller const &controller, Renderer &renderer, std::size_t target_frame_duration);
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
